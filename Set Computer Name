@@ -1,0 +1,10 @@
+#!/bin/bash
+
+userValue=$(osascript << EOF
+text returned of (display dialog "Hello, please enter your computer name" default answer "NAME" buttons {"OK"} default button 1)
+
+EOF)
+
+jamf setComputerName -name "$userValue"
+
+jamf recon
