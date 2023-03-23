@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#Caffeinate to disable sleep
+echo "Status: Disabling sleep on your Mac while we do some things."
+caffeinate -d -i -m -u &
+caffeinatepid=$!
+
+/usr/bin/curl -JL "https://go.microsoft.com/fwlink/?linkid=525133" -o /tmp/Office_2019_Latest.pkg
+
+installer -pkg /tmp/Office_2019_Latest.pkg -target /
+
+rm -f /tmp/Office_2019_Latest.pkg
+
+kill "$caffeinatepid"
+
+exit 0
